@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Lounge | One Album Per Night</title>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header class="neo-border-bottom">
+        <div class="container nav-flex">
+            <h1 class="logo uppercase">Static Lounge</h1>
+            <nav>
+                <a href="#about" class="nav-link uppercase">About</a>
+                <a href="#calendar" class="nav-link uppercase">Calendar</a>
+                <a href="#booking" class="btn-accent uppercase shadow">Book Session</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero neo-border-bottom">
+            <div class="container hero-grid">
+                <div class="hero-content">
+                    <span class="badge uppercase neo-border">By Appointment Only</span>
+                    <h2 class="hero-title uppercase">One Night.<br>One Album.</h2>
+                    <p class="hero-tagline">Escape the digital noise. Join us for a ritual of high-fidelity, uninterrupted listening on vintage vinyl and vacuum tube amplification.</p>
+                    <div class="hero-cta">
+                        <form id="waitlist-form" class="signup-form">
+                            <input type="email" id="email" placeholder="ENTER YOUR EMAIL" required class="neo-border">
+                            <button type="submit" class="btn-primary uppercase shadow">Join the Waitlist</button>
+                        </form>
+                        <p id="form-msg" class="form-status"></p>
+                    </div>
+                </div>
+                <div class="hero-image-container shadow neo-border">
+                    <img src="images/high-angle-macro-shot-of-a-vintage-mcint.png" alt="Vintage Audio Hardware" class="hero-image">
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="features neo-border-bottom">
+            <div class="container grid-3">
+                <div class="feature-card neo-border shadow">
+                    <h3 class="uppercase">The Ritual</h3>
+                    <p>No shuffle. No skipping. We play one legendary album from start to finish. Side A, then Side B. Pure intention.</p>
+                </div>
+                <div class="feature-card neo-border shadow highlight-blue">
+                    <h3 class="uppercase">The Hardware</h3>
+                    <p>Experience audio through the 'Holy Trinity': McIntosh amplifiers, Klipschorn speakers, and Technics SP-10 turntables.</p>
+                </div>
+                <div class="feature-card neo-border shadow">
+                    <h3 class="uppercase">The Sanctuary</h3>
+                    <p>A tech-free zone. Phones stay at the door. Your focus belongs to the music and your company.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="calendar" class="calendar container">
+            <h2 class="section-title uppercase">Nightly Curation</h2>
+            <div id="calendar-list" class="calendar-grid">
+                <!-- Data populated via JS -->
+                <div class="loading">Loading the vault...</div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="neo-border-top">
+        <div class="container footer-flex">
+            <div class="footer-info">
+                <p class="uppercase">&copy; 2026 STATIC LOUNGE</p>
+                <p class="location uppercase">HIDDEN LOCATION // DOWNTOWN DISTRICT</p>
+            </div>
+            <div class="footer-links">
+                <a href="#">INSTAGRAM</a>
+                <a href="#">NEWSLETTER</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

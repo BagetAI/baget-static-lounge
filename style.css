@@ -1,0 +1,284 @@
+:root {
+    --bg-cream: #FFFCE1;
+    --text-black: #1A1A1A;
+    --accent-blue: #4361EE;
+    --meter-green: #4CAF50;
+    --walnut: #5D4037;
+    --shadow-color: #000000;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: var(--text-black);
+    font-family: 'Work Sans', sans-serif;
+    line-height: 1.5;
+}
+
+h1, h2, h3, .uppercase {
+    font-family: 'Space Mono', monospace;
+    font-weight: 700;
+    text-transform: uppercase;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.neo-border {
+    border: 3px solid var(--text-black);
+}
+
+.neo-border-bottom {
+    border-bottom: 3px solid var(--text-black);
+}
+
+.neo-border-top {
+    border-top: 3px solid var(--text-black);
+}
+
+.shadow {
+    box-shadow: 4px 4px 0 var(--shadow-color);
+}
+
+/* Header */
+header {
+    padding: 1.5rem 0;
+    background: var(--bg-cream);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.nav-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: var(--text-black);
+    margin-right: 2rem;
+    font-weight: 700;
+    font-size: 0.9rem;
+}
+
+.btn-accent {
+    background: var(--accent-blue);
+    color: white;
+    padding: 0.8rem 1.5rem;
+    text-decoration: none;
+    border: 3px solid var(--text-black);
+    font-weight: 700;
+    display: inline-block;
+}
+
+/* Hero */
+.hero {
+    padding: 4rem 0;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+}
+
+.badge {
+    display: inline-block;
+    padding: 0.4rem 0.8rem;
+    background: var(--meter-green);
+    color: white;
+    font-size: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.hero-title {
+    font-size: 5rem;
+    line-height: 0.9;
+    margin-bottom: 2rem;
+}
+
+.hero-tagline {
+    font-size: 1.25rem;
+    max-width: 500px;
+    margin-bottom: 2.5rem;
+}
+
+.signup-form {
+    display: flex;
+    gap: 0;
+    max-width: 500px;
+}
+
+.signup-form input {
+    flex-grow: 1;
+    padding: 1rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    outline: none;
+}
+
+.btn-primary {
+    background: var(--text-black);
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    cursor: pointer;
+    border: 3px solid var(--text-black);
+    border-left: none;
+}
+
+.hero-image-container {
+    width: 100%;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: var(--walnut);
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Features */
+.features {
+    padding: 4rem 0;
+}
+
+.grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+}
+
+.feature-card {
+    padding: 2.5rem;
+    background: white;
+}
+
+.feature-card h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+}
+
+.highlight-blue {
+    background: var(--accent-blue);
+    color: white;
+}
+
+.highlight-blue .neo-border {
+    border-color: white;
+}
+
+/* Calendar */
+.calendar {
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.calendar-grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
+.album-row {
+    display: grid;
+    grid-template-columns: 120px 1.5fr 1fr 2fr;
+    gap: 2rem;
+    padding: 1.5rem;
+    background: white;
+    align-items: center;
+}
+
+.date-box {
+    text-align: center;
+    border-right: 3px solid var(--text-black);
+}
+
+.date-day {
+    font-size: 2rem;
+    display: block;
+}
+
+.date-month {
+    font-size: 0.8rem;
+}
+
+.album-title {
+    font-size: 1.2rem;
+}
+
+.artist-name {
+    color: var(--walnut);
+    font-weight: 600;
+}
+
+.curator-note {
+    font-style: italic;
+    font-size: 0.9rem;
+}
+
+/* Footer */
+footer {
+    padding: 3rem 0;
+    margin-top: 4rem;
+}
+
+.footer-flex {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-black);
+    margin-left: 1.5rem;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.form-status {
+    margin-top: 1rem;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
+}
+
+@media (max-width: 900px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+    }
+    .grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .album-row {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+    }
+    .date-box {
+        border-right: none;
+        border-bottom: 3px solid var(--text-black);
+        padding-bottom: 0.5rem;
+        margin-bottom: 0.5rem;
+        text-align: left;
+    }
+}
