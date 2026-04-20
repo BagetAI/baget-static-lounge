@@ -12,9 +12,10 @@
         <div class="container nav-flex">
             <h1 class="logo uppercase">Static Lounge</h1>
             <nav>
-                <a href="#about" class="nav-link uppercase">Ritual</a>
                 <a href="#spinning" class="nav-link uppercase">Spinning</a>
-                <a href="#request" class="btn-cta uppercase shadow">Request Invite</a>
+                <a href="#appointments" class="nav-link uppercase">Book Session</a>
+                <a href="#suggestions" class="nav-link uppercase">Suggest</a>
+                <a href="#waitlist-form" class="btn-cta uppercase shadow">Request Invite</a>
             </nav>
         </div>
     </header>
@@ -40,34 +41,74 @@
             </div>
         </section>
 
-        <section id="about" class="features neo-border-bottom">
-            <div class="container grid-3">
-                <div class="feature-card neo-border shadow">
-                    <h3 class="uppercase">Uninterrupted</h3>
-                    <p>We play one album in its entirety. Side A, then Side B. No shuffling, no skipping, no distractions. Just the music as the artist intended.</p>
-                </div>
-                <div class="feature-card neo-border shadow">
-                    <h3 class="uppercase">The Hardware</h3>
-                    <p>Sound delivered via McIntosh vacuum tube amplification and Klipschorn speakers. The pinnacle of 20th-century audio engineering.</p>
-                </div>
-                <div class="feature-card neo-border shadow">
-                    <h3 class="uppercase">Tech-Free</h3>
-                    <p>Static Lounge is a sanctuary from the digital. Phones are secured upon entry. Your focus remains within the room.</p>
-                </div>
-            </div>
-        </section>
-
         <section id="spinning" class="calendar container neo-border-bottom">
-            <h2 class="section-title uppercase">What's Spinning</h2>
+            <h2 class="section-title uppercase">The Season One Vault</h2>
             <div id="calendar-list" class="calendar-grid">
                 <!-- Data populated via JS -->
                 <div class="loading uppercase">Fetching from the vault...</div>
             </div>
         </section>
 
-        <section class="atmosphere container">
-            <div class="neo-border shadow overflow-hidden">
-                <img src="images/extreme-close-up-of-a-vintage-vacuum-tub.png" alt="Glowing Vacuum Tube" class="atmos-img">
+        <section id="appointments" class="appointments container neo-border-bottom">
+            <div class="grid-2-even">
+                <div class="booking-visual shadow neo-border">
+                    <img src="images/a-close-up-of-a-vintage-mcintosh-tube-am.png" alt="High Fidelity Console" class="full-img">
+                </div>
+                <div class="booking-form-container">
+                    <h2 class="section-title uppercase">Request a Session</h2>
+                    <p class="section-desc">Select a nightly ritual from our curated calendar. All sessions are 90 minutes. Intimacy and silence are mandated.</p>
+                    
+                    <form id="appointment-form" class="ritual-form neo-border shadow">
+                        <div class="form-group">
+                            <label for="booking-date" class="uppercase">Select Ritual Night</label>
+                            <select id="booking-date" required>
+                                <option value="" disabled selected>SELECT A NIGHTLY FEATURE...</option>
+                                <!-- Populated from Vinyl_Calendar -->
+                            </select>
+                        </div>
+                        <div class="form-group grid-2">
+                            <div>
+                                <label for="book-name" class="uppercase">Name</label>
+                                <input type="text" id="book-name" placeholder="YOUR NAME" required>
+                            </div>
+                            <div>
+                                <label for="book-email" class="uppercase">Email</label>
+                                <input type="email" id="book-email" placeholder="EMAIL" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="book-guests" class="uppercase">Guest Count (Max 4)</label>
+                            <input type="number" id="book-guests" min="1" max="4" value="1" required>
+                        </div>
+                        <button type="submit" class="btn-primary-full uppercase shadow">Confirm Request</button>
+                        <p id="book-msg" class="form-status"></p>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section id="suggestions" class="suggestions container">
+            <div class="suggest-box neo-border shadow">
+                <div class="suggest-header">
+                    <h2 class="section-title-sm uppercase">Curate the Future</h2>
+                    <p>Help us identify the next vintage pressing for the vault. What album deserves a dedicated 90-minute ritual?</p>
+                </div>
+                <form id="suggestion-form" class="suggestion-flow">
+                    <div class="form-group">
+                        <input type="text" id="suggest-album" placeholder="ALBUM TITLE" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" id="suggest-artist" placeholder="ARTIST" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea id="suggest-reason" placeholder="WHY SHOULD THIS BE HEARD IN TOTAL SILENCE?" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" id="suggest-email" placeholder="YOUR EMAIL" required>
+                    </div>
+                    <button type="submit" class="btn-primary uppercase shadow">Submit to Curator</button>
+                    <p id="suggest-msg" class="form-status"></p>
+                </form>
             </div>
         </section>
     </main>
@@ -80,7 +121,7 @@
             </div>
             <div class="footer-links">
                 <a href="#" class="uppercase">Instagram</a>
-                <a href="#" class="uppercase">Archive</a>
+                <a href="#" class="uppercase">Legal</a>
             </div>
         </div>
     </footer>

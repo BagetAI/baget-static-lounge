@@ -14,6 +14,10 @@
     padding: 0;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     background-color: var(--bg-black);
     color: var(--text-cream);
@@ -21,7 +25,7 @@ body {
     line-height: 1.6;
 }
 
-h1, h2, h3, .uppercase {
+h1, h2, h3, h4, .uppercase {
     font-family: 'Space Mono', monospace;
     font-weight: 700;
     text-transform: uppercase;
@@ -86,7 +90,6 @@ header {
     border: 3px solid var(--border-color);
     font-weight: 700;
     display: inline-block;
-    font-family: 'Space Mono', monospace;
 }
 
 /* Hero */
@@ -141,19 +144,14 @@ header {
     border: 3px solid var(--border-color);
 }
 
-.signup-form input::placeholder {
-    color: rgba(255, 252, 225, 0.4);
-}
-
 .btn-primary {
     background: var(--accent-green);
     color: var(--bg-black);
-    border: none;
+    border: 3px solid var(--border-color);
+    border-left: none;
     padding: 1.2rem 2.5rem;
     font-weight: 700;
     cursor: pointer;
-    border: 3px solid var(--border-color);
-    border-left: none;
     font-family: 'Space Mono', monospace;
 }
 
@@ -161,7 +159,6 @@ header {
     width: 100%;
     aspect-ratio: 1/1;
     overflow: hidden;
-    background: var(--bg-black);
 }
 
 .hero-image {
@@ -169,28 +166,6 @@ header {
     height: 100%;
     object-fit: cover;
     filter: grayscale(20%) contrast(110%);
-}
-
-/* Features */
-.features {
-    padding: 6rem 0;
-}
-
-.grid-3 {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-}
-
-.feature-card {
-    padding: 3rem;
-    background: transparent;
-}
-
-.feature-card h3 {
-    margin-bottom: 1.5rem;
-    font-size: 1.4rem;
-    color: var(--accent-green);
 }
 
 /* Calendar Section */
@@ -201,7 +176,6 @@ header {
 .section-title {
     font-size: 3rem;
     margin-bottom: 4rem;
-    text-align: left;
 }
 
 .calendar-grid {
@@ -214,69 +188,131 @@ header {
     grid-template-columns: 100px 1.5fr 1fr 2fr;
     gap: 3rem;
     padding: 2rem;
-    background: transparent;
     align-items: center;
 }
 
 .date-box {
     text-align: center;
     border-right: 3px solid var(--border-color);
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
 }
 
-.date-day {
-    font-size: 2.5rem;
+.date-day { font-size: 2.5rem; }
+.date-month { font-size: 0.9rem; }
+
+.artist-name { color: var(--accent-green); }
+
+/* Appointments Section */
+.appointments {
+    padding: 8rem 0;
+}
+
+.grid-2-even {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+}
+
+.full-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
     display: block;
 }
 
-.date-month {
-    font-size: 0.9rem;
-}
-
-.album-title {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-.artist-name {
-    color: var(--accent-green);
-    font-weight: 600;
-}
-
-.curator-note {
-    font-style: italic;
-    font-size: 1rem;
+.section-desc {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
     opacity: 0.8;
 }
 
-/* Atmosphere Image Section */
-.atmosphere {
-    padding: 4rem 0;
+.ritual-form {
+    padding: 3rem;
+    background: var(--bg-black);
 }
 
-.atmos-img {
+.form-group {
+    margin-bottom: 2rem;
+}
+
+.form-group label {
+    display: block;
+    font-size: 0.7rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-green);
+}
+
+.ritual-form input, 
+.ritual-form select, 
+.ritual-form textarea,
+.suggestion-flow input,
+.suggestion-flow textarea {
     width: 100%;
-    height: 500px;
-    object-fit: cover;
+    padding: 1rem;
+    background: transparent;
+    border: 3px solid var(--border-color);
+    color: var(--text-cream);
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    outline: none;
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.btn-primary-full {
+    width: 100%;
+    background: var(--accent-green);
+    color: var(--bg-black);
+    border: 3px solid var(--border-color);
+    padding: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    font-family: 'Space Mono', monospace;
+}
+
+/* Suggestions */
+.suggestions {
+    padding: 10rem 0;
+}
+
+.suggest-box {
+    padding: 5rem;
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 5rem;
+    background: var(--bg-black);
+}
+
+.section-title-sm {
+    font-size: 2.5rem;
+    line-height: 1.1;
+    margin-bottom: 2rem;
+}
+
+.suggestion-flow textarea {
+    min-height: 150px;
+    resize: none;
+}
+
+.form-status {
+    margin-top: 1.5rem;
+    font-weight: 700;
+    font-family: 'Space Mono', monospace;
 }
 
 /* Footer */
-footer {
-    padding: 5rem 0;
-}
+footer { padding: 5rem 0; }
 
 .footer-flex {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
-
-.location {
-    opacity: 0.6;
-    margin-top: 1rem;
 }
 
 .footer-links a {
@@ -286,32 +322,14 @@ footer {
     font-weight: 700;
 }
 
-.form-status {
-    margin-top: 1.5rem;
-    font-weight: 700;
-    font-family: 'Space Mono', monospace;
-    color: var(--accent-green);
-}
-
 @media (max-width: 1000px) {
-    .hero-grid {
-        grid-template-columns: 1fr;
-    }
-    .hero-title {
-        font-size: 4rem;
-    }
-    .grid-3 {
+    .hero-grid, .grid-2-even, .suggest-box {
         grid-template-columns: 1fr;
     }
     .album-row {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
     }
-    .date-box {
-        border-right: none;
-        border-bottom: 3px solid var(--border-color);
-        padding-bottom: 1rem;
-        text-align: left;
-        height: auto;
+    .grid-2 {
+        grid-template-columns: 1fr;
     }
 }
