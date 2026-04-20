@@ -2,7 +2,7 @@ const WAITLIST_DB_ID = '3a097193-f517-4b67-8637-4865cb77df88';
 const CALENDAR_DB_ID = '584f8caf-b772-412a-b350-e23d7aed6ecd';
 
 document.addEventListener('DOMContentLoaded', () => {
-    loadCalendar();
+    loadUpcomingAlbums();
     
     const waitlistForm = document.getElementById('waitlist-form');
     if (waitlistForm) {
@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const msg = document.getElementById('form-msg');
             const emailValue = emailInput.value;
 
-            msg.textContent = 'TRANSMITTING...';
+            msg.textContent = 'TRANSMITTING REQUEST...';
             
             try {
                 const response = await fetch(`https://baget.ai/api/public/databases/${WAITLIST_DB_ID}/rows`, {
@@ -27,19 +27,19 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
 
                 if (response.ok) {
-                    msg.textContent = 'SUCCESS. WELCOME TO THE VAULT.';
+                    msg.textContent = 'TRANSMISSION RECEIVED. WE WILL REACH OUT.';
                     emailInput.value = '';
                 } else {
                     throw new Error('FAILED');
                 }
             } catch (err) {
-                msg.textContent = 'CONNECTION ERROR. TRY AGAIN.';
+                msg.textContent = 'CONNECTION INTERRUPTED. PLEASE RETRY.';
             }
         });
     }
 });
 
-async function loadCalendar() {
+async function loadUpcomingAlbums() {
     const calendarList = document.getElementById('calendar-list');
     
     try {
@@ -49,7 +49,10 @@ async function loadCalendar() {
         if (data && data.length > 0) {
             calendarList.innerHTML = '';
             
-            data.forEach(row => {
+            // Limit to next 3 albums as requested
+            const nextThree = data.slice(0, 3);
+            
+            nextThree.forEach(row => {
                 const date = new Date(row.date);
                 const day = date.getDate();
                 const month = date.toLocaleString('default', { month: 'short' }).toUpperCase();
@@ -62,10 +65,10 @@ async function loadCalendar() {
                         </div>
                         <div class="album-info">
                             <h4 class="album-title uppercase">${row.album_title}</h4>
-                            <p class="artist-name uppercase">${row.artist} (${row.release_year})</p>
+                            <p class="artist-name uppercase">${row.artist} // ${row.release_year}</p>
                         </div>
                         <div class="genre-tag">
-                            <span class="badge uppercase neo-border" style="background:transparent; color:black; border-width:2px; box-shadow:none;">${row.genre}</span>
+                            <span class="badge uppercase" style="margin-bottom:0;">${row.genre}</span>
                         </div>
                         <div class="curator-note">
                             "${row.curator_notes}"
@@ -75,9 +78,9 @@ async function loadCalendar() {
                 calendarList.insertAdjacentHTML('beforeend', html);
             });
         } else {
-            calendarList.innerHTML = '<div class="neo-border shadow" style="padding:2rem;">NO UPCOMING SESSIONS SCHEDULED.</div>';
+            calendarList.innerHTML = '<div class="neo-border shadow" style="padding:3rem; text-align:center;">THE VAULT IS CURRENTLY CLOSED FOR CURATION.</div>';
         }
     } catch (err) {
-        calendarList.innerHTML = '<div class="neo-border shadow" style="padding:2rem;">THE VAULT IS CURRENTLY LOCKED.</div>';
+        calendarList.innerHTML = '<div class="neo-border shadow" style="padding:3rem; text-align:center;">VAULT CONNECTION ERROR.</div>';
     }
 }

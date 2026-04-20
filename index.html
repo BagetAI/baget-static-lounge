@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Static Lounge | One Album Per Night</title>
+    <title>Static Lounge | High-Fidelity Listening Sanctuary</title>
     <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Work+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
@@ -12,9 +12,9 @@
         <div class="container nav-flex">
             <h1 class="logo uppercase">Static Lounge</h1>
             <nav>
-                <a href="#about" class="nav-link uppercase">About</a>
-                <a href="#calendar" class="nav-link uppercase">Calendar</a>
-                <a href="#booking" class="btn-accent uppercase shadow">Book Session</a>
+                <a href="#about" class="nav-link uppercase">Ritual</a>
+                <a href="#spinning" class="nav-link uppercase">Spinning</a>
+                <a href="#request" class="btn-cta uppercase shadow">Request Invite</a>
             </nav>
         </div>
     </header>
@@ -23,19 +23,19 @@
         <section class="hero neo-border-bottom">
             <div class="container hero-grid">
                 <div class="hero-content">
-                    <span class="badge uppercase neo-border">By Appointment Only</span>
-                    <h2 class="hero-title uppercase">One Night.<br>One Album.</h2>
-                    <p class="hero-tagline">Escape the digital noise. Join us for a ritual of high-fidelity, uninterrupted listening on vintage vinyl and vacuum tube amplification.</p>
-                    <div class="hero-cta">
+                    <span class="badge uppercase">Opening April 2026</span>
+                    <h2 class="hero-title uppercase">The<br>Ritual<br>Returns.</h2>
+                    <p class="hero-tagline">A by-appointment listening sanctuary dedicated to the deep appreciation of vintage vinyl. One album per night. Zero digital noise.</p>
+                    <div id="request" class="hero-cta">
                         <form id="waitlist-form" class="signup-form">
-                            <input type="email" id="email" placeholder="ENTER YOUR EMAIL" required class="neo-border">
-                            <button type="submit" class="btn-primary uppercase shadow">Join the Waitlist</button>
+                            <input type="email" id="email" placeholder="EMAIL ADDRESS" required>
+                            <button type="submit" class="btn-primary uppercase shadow">Request Invite</button>
                         </form>
                         <p id="form-msg" class="form-status"></p>
                     </div>
                 </div>
                 <div class="hero-image-container shadow neo-border">
-                    <img src="images/high-angle-macro-shot-of-a-vintage-mcint.png" alt="Vintage Audio Hardware" class="hero-image">
+                    <img src="images/high-angle-macro-shot-of-a-vintage-mcint.png" alt="McIntosh Amplifier Vacuum Tube" class="hero-image">
                 </div>
             </div>
         </section>
@@ -43,25 +43,31 @@
         <section id="about" class="features neo-border-bottom">
             <div class="container grid-3">
                 <div class="feature-card neo-border shadow">
-                    <h3 class="uppercase">The Ritual</h3>
-                    <p>No shuffle. No skipping. We play one legendary album from start to finish. Side A, then Side B. Pure intention.</p>
-                </div>
-                <div class="feature-card neo-border shadow highlight-blue">
-                    <h3 class="uppercase">The Hardware</h3>
-                    <p>Experience audio through the 'Holy Trinity': McIntosh amplifiers, Klipschorn speakers, and Technics SP-10 turntables.</p>
+                    <h3 class="uppercase">Uninterrupted</h3>
+                    <p>We play one album in its entirety. Side A, then Side B. No shuffling, no skipping, no distractions. Just the music as the artist intended.</p>
                 </div>
                 <div class="feature-card neo-border shadow">
-                    <h3 class="uppercase">The Sanctuary</h3>
-                    <p>A tech-free zone. Phones stay at the door. Your focus belongs to the music and your company.</p>
+                    <h3 class="uppercase">The Hardware</h3>
+                    <p>Sound delivered via McIntosh vacuum tube amplification and Klipschorn speakers. The pinnacle of 20th-century audio engineering.</p>
+                </div>
+                <div class="feature-card neo-border shadow">
+                    <h3 class="uppercase">Tech-Free</h3>
+                    <p>Static Lounge is a sanctuary from the digital. Phones are secured upon entry. Your focus remains within the room.</p>
                 </div>
             </div>
         </section>
 
-        <section id="calendar" class="calendar container">
-            <h2 class="section-title uppercase">Nightly Curation</h2>
+        <section id="spinning" class="calendar container neo-border-bottom">
+            <h2 class="section-title uppercase">What's Spinning</h2>
             <div id="calendar-list" class="calendar-grid">
                 <!-- Data populated via JS -->
-                <div class="loading">Loading the vault...</div>
+                <div class="loading uppercase">Fetching from the vault...</div>
+            </div>
+        </section>
+
+        <section class="atmosphere container">
+            <div class="neo-border shadow overflow-hidden">
+                <img src="images/extreme-close-up-of-a-vintage-vacuum-tub.png" alt="Glowing Vacuum Tube" class="atmos-img">
             </div>
         </section>
     </main>
@@ -69,12 +75,12 @@
     <footer class="neo-border-top">
         <div class="container footer-flex">
             <div class="footer-info">
-                <p class="uppercase">&copy; 2026 STATIC LOUNGE</p>
-                <p class="location uppercase">HIDDEN LOCATION // DOWNTOWN DISTRICT</p>
+                <p class="uppercase font-bold">&copy; 2026 STATIC LOUNGE</p>
+                <p class="location uppercase">Downtown District // Hidden Entry</p>
             </div>
             <div class="footer-links">
-                <a href="#">INSTAGRAM</a>
-                <a href="#">NEWSLETTER</a>
+                <a href="#" class="uppercase">Instagram</a>
+                <a href="#" class="uppercase">Archive</a>
             </div>
         </div>
     </footer>
