@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             e.preventDefault();
             const emailInput = document.getElementById('email');
             const msg = document.getElementById('form-msg');
-            const email = emailInput.email.value;
+            const emailValue = emailInput.value;
 
             msg.textContent = 'TRANSMITTING...';
             
@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
                         data: {
-                            email: emailInput.value,
+                            email: emailValue,
                             signup_date: new Date().toISOString().split('T')[0]
                         }
                     })
@@ -65,7 +65,7 @@ async function loadCalendar() {
                             <p class="artist-name uppercase">${row.artist} (${row.release_year})</p>
                         </div>
                         <div class="genre-tag">
-                            <span class="badge uppercase neo-border" style="background:transparent; color:black; border-width:2px;">${row.genre}</span>
+                            <span class="badge uppercase neo-border" style="background:transparent; color:black; border-width:2px; box-shadow:none;">${row.genre}</span>
                         </div>
                         <div class="curator-note">
                             "${row.curator_notes}"
