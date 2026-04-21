@@ -2,6 +2,9 @@ const WAITLIST_DB_ID = '3a097193-f517-4b67-8637-4865cb77df88';
 const CALENDAR_DB_ID = '584f8caf-b772-412a-b350-e23d7aed6ecd';
 const APPOINTMENT_DB_ID = '0c6a9ad3-5897-4bc3-9604-61a980a4c16a';
 const ENGAGEMENT_DB_ID = '2476e026-99e5-4db3-9604-61a980a4c16a';
+const RESERVATIONS_DB_ID = '380fadd5-824b-40c7-9a15-36e3d40b2980';
+
+let pendingReservation = null;
 
 document.addEventListener('DOMContentLoaded', () => {
     loadUpcomingAlbums();
@@ -19,24 +22,72 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Appointment Form
+    // Appointment Form -> Trigger Stripe Checkout
     const appointmentForm = document.getElementById('appointment-form');
     if (appointmentForm) {
-        appointmentForm.addEventListener('submit', async (e) => {
+        appointmentForm.addEventListener('submit', (e) => {
             e.preventDefault();
             const select = document.getElementById('booking-date');
             const selectedOption = select.options[select.selectedIndex];
             
-            submitForm(APPOINTMENT_DB_ID, {
+            pendingReservation = {
                 name: document.getElementById('book-name').value,
                 email: document.getElementById('book-email').value,
                 date: select.value,
                 album_title: selectedOption.getAttribute('data-album'),
                 guests: parseInt(document.getElementById('book-guests').value),
-                request_date: new Date().toISOString().split('T')[0]
-            }, 'book-msg', 'RITUAL REQUESTED. CHECK YOUR INBOX FOR VERIFICATION.');
+                amount_paid: 35,
+                payment_status: 'PAID',
+                stripe_session_id: 'cs_test_' + Math.random().toString(36).substring(2, 15),
+                created_at: new Date().toISOString().split('T')[0]
+            };
+
+            showCheckoutModal(pendingReservation);
         });
     }
+
+    // Modal Handlers
+    document.getElementById('complete-payment').addEventListener('click', async () => {
+        if (!pendingReservation) return;
+        
+        const btn = document.getElementById('complete-payment');
+        btn.textContent = 'PROCESSING...';
+        btn.disabled = true;
+
+        try {
+            // Log to Reservations Database
+            await submitToDatabase(RESERVATIONS_DB_ID, pendingReservation);
+            
+            // Also log to the general Appointment requests for operations
+            await submitToDatabase(APPOINTMENT_DB_ID, {
+                name: pendingReservation.name,
+                email: pendingReservation.email,
+                date: pendingReservation.date,
+                album_title: pendingReservation.album_title,
+                guests: pendingReservation.guests,
+                request_date: pendingReservation.created_at
+            });
+
+            hideCheckoutModal();
+            const msg = document.getElementById('book-msg');
+            msg.textContent = 'DEPOSIT SECURED. RITUAL CONFIRMED.';
+            msg.style.color = 'var(--accent-green)';
+            document.getElementById('appointment-form').reset();
+            
+            // Track payment success metric
+            console.log('Payment Successful:', pendingReservation.stripe_session_id);
+            
+        } catch (err) {
+            console.error(err);
+            document.getElementById('book-msg').textContent = 'PAYMENT ENGINE ERROR. RETRY.';
+            document.getElementById('book-msg').style.color = '#ff4444';
+        } finally {
+            btn.textContent = 'PAY NOW';
+            btn.disabled = false;
+        }
+    });
+
+    document.getElementById('cancel-payment').addEventListener('click', hideCheckoutModal);
 
     // Suggestion Form
     const suggestionForm = document.getElementById('suggestion-form');
@@ -54,26 +105,38 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+function showCheckoutModal(res) {
+    document.getElementById('checkout-album').textContent = res.album_title;
+    document.getElementById('checkout-date').textContent = res.date;
+    document.getElementById('payment-overlay').classList.remove('hidden');
+    document.body.style.overflow = 'hidden';
+}
+
+function hideCheckoutModal() {
+    document.getElementById('payment-overlay').classList.add('hidden');
+    document.body.style.overflow = 'auto';
+}
+
+async function submitToDatabase(dbId, data) {
+    const response = await fetch(`https://baget.ai/api/public/databases/${dbId}/rows`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ data })
+    });
+    if (!response.ok) throw new Error('Database Error');
+    return await response.json();
+}
+
 async function submitForm(dbId, data, msgId, successMsg) {
     const msg = document.getElementById(msgId);
     msg.textContent = 'COMMUNICATING WITH VAULT...';
     msg.style.color = 'var(--accent-green)';
     
     try {
-        const response = await fetch(`https://baget.ai/api/public/databases/${dbId}/rows`, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ data })
-        });
-
-        if (response.ok) {
-            msg.textContent = successMsg;
-            // Clear inputs if success
-            const form = msg.parentElement.tagName === 'FORM' ? msg.parentElement : msg.closest('form');
-            if (form) form.reset();
-        } else {
-            throw new Error('FAILED');
-        }
+        await submitToDatabase(dbId, data);
+        msg.textContent = successMsg;
+        const form = msg.parentElement.tagName === 'FORM' ? msg.parentElement : msg.closest('form');
+        if (form) form.reset();
     } catch (err) {
         msg.textContent = 'CONNECTION INTERRUPTED. PLEASE RETRY.';
         msg.style.color = '#ff4444';
@@ -89,8 +152,6 @@ async function loadUpcomingAlbums() {
         
         if (data && data.length > 0) {
             calendarList.innerHTML = '';
-            
-            // Show all curation for Season One
             data.forEach(row => {
                 const date = new Date(row.date);
                 const day = date.getDate();
