@@ -118,7 +118,7 @@ function hideCheckoutModal() {
 }
 
 async function submitToDatabase(dbId, data) {
-    const response = await fetch(`https://baget.ai/api/public/databases/${dbId}/rows`, {
+    const response = await fetch(`https://app.baget.ai/api/public/databases/${dbId}/rows`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ data })
@@ -147,7 +147,7 @@ async function loadUpcomingAlbums() {
     const calendarList = document.getElementById('calendar-list');
     
     try {
-        const response = await fetch(`https://baget.ai/api/public/databases/${CALENDAR_DB_ID}/rows`);
+        const response = await fetch(`https://app.baget.ai/api/public/databases/${CALENDAR_DB_ID}/rows`);
         const data = await response.json();
         
         if (data && data.length > 0) {
@@ -190,7 +190,7 @@ async function populateBookingSelector() {
     if (!selector) return;
 
     try {
-        const response = await fetch(`https://baget.ai/api/public/databases/${CALENDAR_DB_ID}/rows`);
+        const response = await fetch(`https://app.baget.ai/api/public/databases/${CALENDAR_DB_ID}/rows`);
         const data = await response.json();
         
         if (data && data.length > 0) {
